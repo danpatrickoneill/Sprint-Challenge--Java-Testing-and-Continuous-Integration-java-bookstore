@@ -37,8 +37,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                                    "/webjars/**"              // swagger
                         ).permitAll()
                 // hasAnyRole can be a list of roles as in "ADMIN", "DATA"
+                .antMatchers("/data").hasAnyRole("ADMIN", "DATA")
                 .antMatchers("/roles", "/actuator/**").hasAnyRole("ADMIN")
-                .antMatchers("/**").authenticated()
+                .antMatchers("/books", "authors").authenticated()
             .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 
         // http.requiresChannel().anyRequest().requiresSecure();

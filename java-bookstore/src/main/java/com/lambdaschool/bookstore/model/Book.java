@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "books")
+@Table(name = "book")
 public class Book extends Auditable
 {
     @Id
@@ -17,21 +17,20 @@ public class Book extends Auditable
     private String booktitle;
     private String bookisbn;
     private int bookcopyright;
+    private long sectionid;
 
-    @ManyToMany(mappedBy = "books")
+    @ManyToMany(mappedBy = "books", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("books")
     private List<Author> authors = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"books", "hibernateLazyInitializer"})
+    private Section section;
+
+
+
     public Book()
     {
-    }
-
-    public Book(String booktitle, String bookisbn, int bookcopyright, List<Author> authors)
-    {
-        this.booktitle = booktitle;
-        this.bookisbn = bookisbn;
-        this.bookcopyright = bookcopyright;
-        this.authors = authors;
     }
 
     public long getBookid()
@@ -83,4 +82,5 @@ public class Book extends Auditable
     {
         this.authors = authors;
     }
+
 }

@@ -62,9 +62,9 @@ public class BookServiceImpl implements BookService
 
             return bookrepo.save(currentBook);
 
+        } else {
+            throw new EntityNotFoundException("Couldn't find book with id: " + id);
         }
-
-        throw new EntityNotFoundException("Couldn't find book with id: " + id);
     }
 
     @Override
@@ -72,8 +72,10 @@ public class BookServiceImpl implements BookService
     {
         if (bookrepo.findById(id).isPresent()) {
             bookrepo.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("Couldn't find book with id: " + id);
         }
 
-        throw new EntityNotFoundException("Couldn't find book with id: " + id);
+
     }
 }

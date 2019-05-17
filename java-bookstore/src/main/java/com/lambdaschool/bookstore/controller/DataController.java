@@ -1,5 +1,6 @@
 package com.lambdaschool.bookstore.controller;
 
+import com.lambdaschool.bookstore.model.Author;
 import com.lambdaschool.bookstore.model.Book;
 import com.lambdaschool.bookstore.service.BookService;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +20,14 @@ public class DataController
     @PutMapping(value = "books/{id}", consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> updateBook(@RequestBody Book book, @PathVariable long id)
     {
-        bookService.update(book, id);
+        Book rtnBook = bookService.update(book, id);
+        return new ResponseEntity<>(rtnBook, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Connects an existing book to an author", response = Book.class)
+    @PostMapping(value = "books/authors/{id}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> connectBookToAuthor(@RequestBody Book book, @RequestBody Author author, @PathVariable long id)
+    {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -12,7 +12,7 @@
     <artifactId>authenticatedusers</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>authenticatedusers</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Sprint Challenge project 3-17-19 for Spring Boot</description>
 
     <properties>
         <java.version>11</java.version>
@@ -37,15 +37,15 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <!--            <scope>runtime</scope> -->
-        </dependency>
 <!--        <dependency>-->
-<!--            <groupId>org.postgresql</groupId>-->
-<!--            <artifactId>postgresql</artifactId>-->
+        <!--            <groupId>com.h2database</groupId>-->
+        <!--            <artifactId>h2</artifactId>-->
+        <!--            &lt;!&ndash;            <scope>runtime</scope> &ndash;&gt;-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -143,11 +143,11 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>2.0.3</version>
                 <configuration>
-                    <appName>***APP NAME***</appName>
+                    <appName>dpo-bookstore</appName>
                     <includeTarget>false</includeTarget>
                     <includes>
                         <!--   For windows      <include>${project.build.directory}\${project.build.finalName}.jar</include>-->
-                        <include>${project.build.directory}/${project.build.finalName}.jar</include>
+                        <include>${project.build.directory}\${project.build.finalName}.jar</include>
                     </includes>
                     <jdkVersion>${java.version}</jdkVersion>
                     <processTypes>
